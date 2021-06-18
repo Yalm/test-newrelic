@@ -1,0 +1,44 @@
+version: '3.8'
+services: 
+    api:
+        build: .
+        volumes:
+          - .:/usr/src/app
+          - /usr/src/app/node_modules
+        ports:
+            - 3000:3000
+            - 9229:9229
+        networks:
+            - newrelic
+        env_file:
+            - .env
+        depends_on:
+            - mongodb
+
+    mongodb:
+        image : mongo:4.4
+        ports:
+            - 27017:27017
+        networks:
+            - newrelic
+        volumes:
+            - mongodb_data_container:/data/db
+
+    logstash:
+        user: root
+        build: ./logstash
+        volumes:
+            - "./logstash/pipeline:/usr/share/logstash/pipeline:ro"
+            - "./logstash/settings/logstash.yml:/usr/share/logstash/config/logstash.yml:ro"
+            - "/var/lib/docker/containers:/var/lib/docker/containers:ro"
+            - "/var/run/docker.sock:/var/run/docker.sock:ro"
+        networks:
+            - newrelic
+
+
+volumes:
+    mongodb_data_container:
+
+networks:
+    newrelic:
+        driver: bridge
