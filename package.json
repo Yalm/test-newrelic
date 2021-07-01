@@ -24,9 +24,14 @@
     "@nestjs/common": "^7.6.15",
     "@nestjs/config": "^0.6.3",
     "@nestjs/core": "^7.6.15",
+    "@nestjs/cqrs": "^7.0.1",
+    "@nestjs/microservices": "^7.6.18",
     "@nestjs/mongoose": "^7.2.4",
     "@nestjs/platform-express": "^7.6.15",
     "@newrelic/winston-enricher": "^1.0.0",
+    "amqp-connection-manager": "^3.2.2",
+    "amqplib": "^0.8.0",
+    "aws-sdk": "^2.934.0",
     "bunyan": "^1.8.15",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
@@ -85,7 +90,9 @@
       "@app/newrelic/(.*)": "<rootDir>/libs/newrelic/src/$1",
       "@app/newrelic": "<rootDir>/libs/newrelic/src",
       "@app/logger/(.*)": "<rootDir>/libs/logger/src/$1",
-      "@app/logger": "<rootDir>/libs/logger/src"
+      "@app/logger": "<rootDir>/libs/logger/src",
+      "@app/lambda/(.*)": "<rootDir>/libs/lambda/src/$1",
+      "@app/lambda": "<rootDir>/libs/lambda/src"
     }
   }
 }

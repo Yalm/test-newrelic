@@ -4,13 +4,23 @@ import {
     noticeError,
     getTransaction,
     addCustomAttribute,
-    startWebTransaction
+    startWebTransaction,
+    setTransactionName,
+    endTransaction
 } from 'newrelic';
 
 @Injectable()
 export class NewrelicService {
     getTransaction() {
         return getTransaction();
+    }
+
+    setTransactionName(name: string) {
+        setTransactionName(name);
+    }
+
+    endTransaction() {
+        endTransaction();
     }
 
     startWebTransaction<T>(
